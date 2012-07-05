@@ -22,9 +22,10 @@
  
     $(document).ready(function(){
       // Share Widgets
-      $('article[id^="post"]').bind("mouseenter", function(){
+      $('article[id^="post"] div.lazy-share-widget').bind("mouseenter", function(){
           // Post details
-          var id = $(this).attr("id").slice(5);
+          var id = $(this).attr("id").slice(8);
+          console.log(id);
           var permalink = $(this).find('.ngsb-post-url').html();
           var title = $(this).find('.ngsb-post-title').html();
    
