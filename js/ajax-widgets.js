@@ -38,7 +38,7 @@
           FB.XFBML.parse(document.getElementById('fb-newshare-' + id));
    
           // Twitter
-          var twitter_str = '<span style="float:left;width:100px;margin-right:5px;"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url=' + permalink + '&amp;text=' + title + '&amp;via=techcrunch" style="width:130px; height:50px;" allowTransparency="true" frameborder="0"></iframe></span>';
+          var twitter_str = '<span style="float:left;width:100px;margin-right:5px;"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url=' + permalink + '&amp;text=' + title + '" style="width:130px; height:50px;" allowTransparency="true" frameborder="0"></iframe></span>';
           $('#tweet-newshare-' + id).css('width', '110px').removeClass('twitter').html(twitter_str);
    
           // Google Plus
