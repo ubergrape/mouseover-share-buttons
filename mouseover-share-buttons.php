@@ -43,7 +43,9 @@ function ngsb_head() {
   echo '<style type="text/css">'.$ngsb_css.'</style>';
 }
 
-function ngsb_generate_html($post_id){
+function ngsb_generate_html($post){
+
+  $post_id = $post->ID;
 
 
   $html = '
@@ -52,6 +54,8 @@ function ngsb_generate_html($post_id){
       <div class="platform linkedin" id="linkedin-newshare-'.$post_id.'"></div>
       <div class="platform twitter" id="tweet-newshare-'.$post_id.'"></div>
       <div class="platform gplus"><span id="gplus-newshare-'.$post_id.'"></span></div>
+      <div class="ngsb-post-title" style="display:none;">'.$post->post_title.'</div>
+      <div class="ngsb-post-url" style="display:none;">'.get_permalink($post_id).'</div>
     </div>    
   ';
 
@@ -59,14 +63,26 @@ function ngsb_generate_html($post_id){
 }
 function ngsb_share_buttons($content){
   global $post;
+  
+  $options = get_option('ngsb_options');
   /**
    * Sind wir auf einer CMS-Seite?
    */
   if(is_page()) {
     return $content;
   }
-  $button = ngsb_generate_html($post->ID);
-  return $button . $content . $button;
+
+  if($options[enabled]){
+    $button = ngsb_generate_html($post);
+    if($options['position'] == 'before'){
+      return $button . $content;
+    }else if ($options['position'] == 'after'){
+      return $content . $button;
+    
+    }
+  }else{
+    return $content;
+  }
 
 }
 

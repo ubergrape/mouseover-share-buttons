@@ -25,8 +25,8 @@
       $('article[id^="post"]').bind("mouseenter", function(){
           // Post details
           var id = $(this).attr("id").slice(5);
-          var permalink = $('.post-title a', this).attr("href");
-          var title = $('.post-title a', this).text();
+          var permalink = $(this).find('.ngsb-post-title', this).html();
+          var title = $(this).find('.ngsb-post-title').text();
    
           // Remove icon images
           $('#sharing-' + id).css('background', 'none');
