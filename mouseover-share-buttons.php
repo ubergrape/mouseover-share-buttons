@@ -64,7 +64,7 @@ function ngsb_generate_html($post){
 function ngsb_share_buttons($content){
   global $post;
   
-  $options = get_option('ngsb_options');
+  $options = ngsb_get_options();
   /**
    * Sind wir auf einer CMS-Seite?
    */

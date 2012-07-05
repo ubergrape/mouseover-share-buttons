@@ -1,7 +1,13 @@
 <?php // add the admin options page
+
+  $defaults = array(
+    'enabled' => '1',
+    'position' => 'before'
+  );
+
   add_action('admin_menu', 'plugin_admin_add_page');
   add_action('admin_init', 'plugin_admin_init');
-  
+
   function plugin_admin_init(){
     register_setting( 'ngsb_options', 'ngsb_options', 'ngsb_options_validate' );
     add_settings_section('plugin_main', 'Main Settings', 'plugin_section_text', 'ngsb_plugin');
@@ -14,12 +20,12 @@
   }
 
   function ngsb_enabled() {
-    $options = get_option('ngsb_options');
+    $options = ngsb_get_options();
     echo '<input name="ngsb_options[enabled]" id="ngsb_enabled" type="checkbox" value="1" class="code" ' . checked( 1, $options['enabled'], false ) . ' />';
   }
 
   function ngsb_position(){
-    $options = get_option('ngsb_options');
+    $options = ngsb_get_options();
     echo '<input type="radio" name="ngsb_options[position]" value="before"' . checked('before', $options['position'], false) . ' /> before content <br />';
     echo '<input type="radio" name="ngsb_options[position]" value="after"' . checked('after', $options['position'], false) . ' /> after content';
   }
@@ -28,6 +34,11 @@
     $newinput['enabled'] = trim($input['enabled']);
     $newinput['position'] = trim($input['position']);
     return $newinput;
+  }
+
+  function ngsb_get_options(){
+    global $defaults;
+    return wp_parse_args(get_option('ngsb_options'), $defaults);
   }
 
 ?>
