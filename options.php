@@ -46,8 +46,8 @@
   function plugin_options_page() {
 ?>
   <div>
-    <h2>My custom plugin</h2>
-    Options relating to the Custom Plugin.
+    <h2>Mouseover Share-Buttons Settings</h2>
+    Options relating to the Mouseover Share-Buttons Plugin.
     <form action="options.php" method="post">
       <?php settings_fields('ngsb_options'); ?>
       <?php do_settings_sections('ngsb_plugin'); ?>
