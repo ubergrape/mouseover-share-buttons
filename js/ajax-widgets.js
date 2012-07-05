@@ -25,14 +25,15 @@
       $('article[id^="post"]').bind("mouseenter", function(){
           // Post details
           var id = $(this).attr("id").slice(5);
-          var permalink = $(this).find('.ngsb-post-title', this).html();
-          var title = $(this).find('.ngsb-post-title').text();
+          var permalink = $(this).find('.ngsb-post-url').html();
+          var title = $(this).find('.ngsb-post-title').html();
    
           // Remove icon images
           $('#sharing-' + id).css('background', 'none');
    
           // Facebook
           var fb_str = '<fb:like href="' + permalink + '" layout="button_count" send="false" show_faces="false"></fb:like>';
+          console.log(fb_str);
           $('#fb-newshare-' + id).removeClass('facebook').css('width', 'auto').html(fb_str);
           FB.XFBML.parse(document.getElementById('fb-newshare-' + id));
    
