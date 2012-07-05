@@ -6,7 +6,9 @@
     register_setting( 'ngsb_options', 'ngsb_options', 'ngsb_options_validate' );
     add_settings_section('plugin_main', 'Main Settings', 'plugin_section_text', 'ngsb_plugin');
     add_settings_field('ngsb_enabled', 'Enable Mouseover Sharebuttons', 'ngsb_enabled', 'ngsb_plugin', 'plugin_main');
+    add_settings_field('ngsb_position', 'Position', 'ngsb_position', 'ngsb_plugin', 'plugin_main');
   }
+
   function plugin_admin_add_page() {
     add_options_page('Mouseover Sharebuttons Page', ' Mouseover Sharebuttons Menu', 'manage_options', 'ngsb_plugin', 'plugin_options_page');
   }
@@ -16,11 +18,18 @@
     echo '<input name="ngsb_options[enabled]" id="ngsb_enabled" type="checkbox" value="1" class="code" ' . checked( 1, $options['enabled'], false ) . ' />';
   }
 
+  function ngsb_position(){
+    $options = get_option('ngsb_options');
+    echo '<input type="radio" name="ngsb_options[position]" value="before"' . checked('before', $options['position'], true ) . ' /> before content <br />';
+    echo '<input type="radio" name="ngsb_options[position]" value="after"' . checked('after', $options['position'], true ) . ' /> after content';
+  }
+
   function ngsb_options_validate($input) {
     $newinput['enabled'] = trim($input['enabled']);
-    echo $newinput['enabled'];
+    $newinput['position'] = trim($input['position']);
     return $newinput;
   }
+
 ?>
 <?php // display the admin options page
   function plugin_options_page() {

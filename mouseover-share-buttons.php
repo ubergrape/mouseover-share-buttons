@@ -21,6 +21,59 @@ function ngsb_sharebuttons_init(){
   wp_enqueue_script('ajax-share-buttons');
 }
 
+function ngsb_head() {
+  $ngsb_img_path =plugins_url(basename(dirname(__FILE__)) ) . '/img/ngsb_button_row.png';
+  $ngsb_css = '
+    .lazy-share-widget {
+      font-size:11px;
+      font-style:normal;
+      font-weight:bold;
+      min-width:211px;
+      height:20px;
+      margin-top:12px;
+      background:#fff url('.$ngsb_img_path.') 0 0 no-repeat;
+      float:left;
+    }
+    .lazy-share-widget .platform {
+      height:20px;
+      float:left;
+      display:inline;
+    }
+  ';
+  echo '<style type="text/css">'.$ngsb_css.'</style>';
+}
+
+function ngsb_generate_html($post_id){
+
+
+  $html = '
+    <div class="lazy-share-widget" id="sharing-'.$post_id.'">
+      <div class="platform facebook" id="fb-newshare-'.$post_id.'"></div>
+      <div class="platform linkedin" id="linkedin-newshare-'.$post_id.'"></div>
+      <div class="platform twitter" id="tweet-newshare-'.$post_id.'"></div>
+      <div class="platform gplus"><span id="gplus-newshare-'.$post_id.'"></span></div>
+    </div>    
+  ';
+
+  return $html;
+}
+function ngsb_share_buttons($content){
+  global $post;
+  /**
+   * Sind wir auf einer CMS-Seite?
+   */
+  if(is_page()) {
+    return $content;
+  }
+  $button = ngsb_generate_html($post->ID);
+  return $button . $content . $button;
+
+}
+
+
 add_action('init', 'ngsb_sharebuttons_init');
+add_action('wp_head', 'ngsb_head');
+add_filter('the_content', 'ngsb_share_buttons');
+
 
 ?>
