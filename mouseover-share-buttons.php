@@ -61,7 +61,8 @@ function ngsb_generate_html($post){
 
   return $html;
 }
-function ngsb_share_buttons($content){
+
+function ngsb_share_buttons_before($title){
   global $post;
   
   $options = ngsb_get_options();
@@ -69,27 +70,40 @@ function ngsb_share_buttons($content){
    * Sind wir auf einer CMS-Seite?
    */
   if(is_page()) {
-    return $content;
+    return $title;
   }
 
-  if($options[enabled]){
+  if($options['enabled'] && $options['position'] == 'before'){
     $button = ngsb_generate_html($post);
-    if($options['position'] == 'before'){
-      return $button . $content;
-    }else if ($options['position'] == 'after'){
-      return $content . $button;
-    
-    }
+    return $title . '<br />' . $button . '<br />';
   }else{
-    return $content;
+    return $title;
   }
-
 }
 
+function ngsb_share_buttons_after($tags){
+  global $post;
+  
+  $options = ngsb_get_options();
+  /**
+   * Sind wir auf einer CMS-Seite?
+   */
+  if(is_page()) {
+    return $tags;
+  }
+
+  if($options['enabled'] && $options['position'] == 'after'){
+    $button = ngsb_generate_html($post);
+    return $tags . '<br />' . $button . '<br />';
+  }else{
+    return $tags;
+  }
+}
 
 add_action('init', 'ngsb_sharebuttons_init');
 add_action('wp_head', 'ngsb_head');
-add_filter('the_content', 'ngsb_share_buttons');
+add_filter('the_title', 'ngsb_share_buttons_before');
+add_filter('the_tags', 'ngsb_share_buttons_after');
 
 
 ?>
