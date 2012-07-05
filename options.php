@@ -20,8 +20,8 @@
 
   function ngsb_position(){
     $options = get_option('ngsb_options');
-    echo '<input type="radio" name="ngsb_options[position]" value="before"' . checked('before', $options['position'], true ) . ' /> before content <br />';
-    echo '<input type="radio" name="ngsb_options[position]" value="after"' . checked('after', $options['position'], true ) . ' /> after content';
+    echo '<input type="radio" name="ngsb_options[position]" value="before"' . checked('before', $options['position'], false) . ' /> before content <br />';
+    echo '<input type="radio" name="ngsb_options[position]" value="after"' . checked('after', $options['position'], false) . ' /> after content';
   }
 
   function ngsb_options_validate($input) {
