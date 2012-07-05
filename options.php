@@ -10,7 +10,7 @@
 
   function plugin_admin_init(){
     register_setting( 'ngsb_options', 'ngsb_options', 'ngsb_options_validate' );
-    add_settings_section('plugin_main', 'Main Settings', 'plugin_section_text', 'ngsb_plugin');
+    add_settings_section('plugin_main', 'Main Settings', 'ngsb_section_text', 'ngsb_plugin');
     add_settings_field('ngsb_enabled', 'Enable Mouseover Sharebuttons', 'ngsb_enabled', 'ngsb_plugin', 'plugin_main');
     add_settings_field('ngsb_position', 'Position', 'ngsb_position', 'ngsb_plugin', 'plugin_main');
   }
@@ -39,6 +39,10 @@
   function ngsb_get_options(){
     global $defaults;
     return wp_parse_args(get_option('ngsb_options'), $defaults);
+  }
+
+  function ngsb_section_text() {
+    echo '';
   }
 
 ?>
