@@ -33,17 +33,8 @@
    
           // Facebook
           var fb_str = '<fb:like href="' + permalink + '" layout="button_count" send="false" show_faces="false"></fb:like>';
-          console.log(fb_str);
           $('#fb-newshare-' + id).removeClass('facebook').css('width', 'auto').html(fb_str);
           FB.XFBML.parse(document.getElementById('fb-newshare-' + id));
-   
-          // LinkedIn
-          var linkedin_str = '<scr' + 'ipt id="inshare-' + id + '" type="in/share" data-url="' + permalink + '" data-counter="right"></scr' + 'ipt>';
-          $('#linkedin-newshare-' + id).css('width', '110px').removeClass('linkedin').html(linkedin_str);
-          if (typeof(IN) != 'object') 
-              jQuery.getScript('http://platform.linkedin.com/in.js');
-          else 
-              IN.parse(document.getElementById('linkedin-newshare-' + id));
    
           // Twitter
           var twitter_str = '<span style="float:left;width:100px;margin-right:5px;"><iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.html?url=' + permalink + '&amp;text=' + title + '&amp;via=techcrunch" style="width:130px; height:50px;" allowTransparency="true" frameborder="0"></iframe></span>';
@@ -63,7 +54,13 @@
                   "size": 'medium'
               });
           }
-   
+
+          // Pinterest
+          var pinteres_str = '<a href="http://pinterest.com/pin/create/button/?url='+ permalink+'" class="pin-it-button" count-layout="none"><img src="//assets.pinterest.com/images/PinExt.png" alt="Pin it" / ></a>';
+          $('#pinterest-newshare-'+ id).html(pinteres_str);
+
+          jQuery.getScript('http://assets.pinterest.com/js/pinit.js');
+
           // Only load this process once
           $(this).unbind('mouseenter mouseleave');
       });

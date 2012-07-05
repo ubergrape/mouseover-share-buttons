@@ -51,9 +51,9 @@ function ngsb_generate_html($post){
   $html = '
     <div class="lazy-share-widget" id="sharing-'.$post_id.'">
       <div class="platform facebook" id="fb-newshare-'.$post_id.'"></div>
-      <div class="platform linkedin" id="linkedin-newshare-'.$post_id.'"></div>
       <div class="platform twitter" id="tweet-newshare-'.$post_id.'"></div>
       <div class="platform gplus"><span id="gplus-newshare-'.$post_id.'"></span></div>
+      <div class="platform linkedin" id="pinterest-newshare-'.$post_id.'"></div>
       <div class="ngsb-post-title" style="display:none;">'.$post->post_title.'</div>
       <div class="ngsb-post-url" style="display:none;">'.get_permalink($post_id).'</div>
     </div>    
