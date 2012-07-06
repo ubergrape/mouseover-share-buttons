@@ -13,6 +13,7 @@
     register_setting( 'ngsb_options', 'ngsb_options', 'ngsb_options_validate' );
     add_settings_section('plugin_main', 'Main Settings', 'ngsb_section_text', 'ngsb_plugin');
     add_settings_field('ngsb_enabled', 'Enable Mouseover Sharebuttons', 'ngsb_enabled', 'ngsb_plugin', 'plugin_main');
+    add_settings_field('ngsb_position', 'Use Newsgrape URL', 'ngsb_position', 'ngsb_plugin', 'plugin_main');
     add_settings_field('ngsb_use_ng_url', 'Use Newsgrape URL', 'ngsb_use_ng_url', 'ngsb_plugin', 'plugin_main');
   }
 
