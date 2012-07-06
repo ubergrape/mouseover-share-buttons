@@ -41,6 +41,7 @@ function ngsb_head() {
     }
   ';
   echo '<style type="text/css">'.$ngsb_css.'</style>';
+  echo ngsb_opengraph_tags();
 }
 
 function ngsb_generate_html($post){
@@ -93,6 +94,23 @@ function ngsb_share_buttons_after($tags){
   }else{
     return $tags;
   }
+}
+
+function ngsb_opengraph_tags() {
+  global $post;
+
+  // only single article
+  if(is_feed() || is_trackback() || !is_singular()) {
+    return;
+  }
+
+  /**
+   * Open:Graph-Tags for FB-Like
+   */
+  echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '"/>' . "\n";
+  echo '<meta property="og:type" content="article"/>' . "\n";
+  echo '<meta property="og:title" content="' . strip_tags(get_the_title()) . '"/>' . "\n";
+  echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '"/>' . "\n";
 }
 
 add_action('init', 'ngsb_sharebuttons_init');
