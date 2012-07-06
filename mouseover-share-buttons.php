@@ -25,14 +25,13 @@ function ngsb_head() {
   $ngsb_img_path =plugins_url(basename(dirname(__FILE__)) ) . '/img/ngsb_button_row.png';
   $ngsb_css = '
     .lazy-share-widget {
-      font-size:11px;
-      font-style:normal;
-      font-weight:bold;
-      min-width:211px;
-      height:20px;
-      margin-top:12px;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: bold;
+      min-width: 211px;
+      height: 29px;
+      margin: 5px 0;
       background:#fff url('.$ngsb_img_path.') 0 0 no-repeat;
-      float:left;
     }
     .lazy-share-widget .platform {
       height:20px;
