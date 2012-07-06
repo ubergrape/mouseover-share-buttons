@@ -48,6 +48,9 @@
 ?>
 <?php // display the admin options page
   function plugin_options_page() {
+
+    $ngsb_img_path =plugins_url(basename(dirname(__FILE__)) ) . '/img/';
+
 ?>
   <div>
     <h2>Mouseover Share-Buttons Settings</h2>
@@ -60,5 +63,11 @@
     </form>
   </div>
 
+  <table>
+    <tr>
+    <td><a href="http://www.newsgrape.com/p/connect-with-wordpress/"><img width="100%" style="max-width:100%;border:none" src="<?php echo $ngsb_img_path; ?>check-newsgrape.jpg"></a></td>
+     <td><a href="http://www.wpbeginner.com/"><img width="100%" style="max-width:100%;border:none" src="<?php echo $ngsb_img_path; ?>check-wp-beginner.jpg"></a></td>
+    </tr>
+  </table>
 <?php
 }?>
