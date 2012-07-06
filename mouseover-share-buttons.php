@@ -48,6 +48,7 @@ function ngsb_generate_html($post){
 
   $post_id = $post->ID;
 
+  $url = ngsb_get_permalink($post_id);
 
   $html = '
     <div class="lazy-share-widget" id="sharing-'.$post_id.'">
@@ -56,7 +57,7 @@ function ngsb_generate_html($post){
       <div class="platform gplus"><span id="gplus-newshare-'.$post_id.'"></span></div>
       <div class="platform linkedin" id="pinterest-newshare-'.$post_id.'"></div>
       <div class="ngsb-post-title" style="display:none;">'.$post->post_title.'</div>
-      <div class="ngsb-post-url" style="display:none;">'.get_permalink($post_id).'</div>
+      <div class="ngsb-post-url" style="display:none;">'.$url.'</div>
     </div>    
   ';
 
@@ -96,12 +97,56 @@ function ngsb_share_buttons_after($tags){
   }
 }
 
-function ngsb_opengraph_tags() {
+function ngsb_get_article_thumbnail(){
+
   global $post;
 
+  $images = '';
+
+  if(function_exists('get_post_thumbnail_id')) {
+    $images = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID));
+  }
+
+  if(is_array($images)) {
+    $thumbnail = $images['0'];
+  } else {
+    $default_thumbnail = '';
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+
+    if($output > 0) {
+      $thumbnail = $matches[1][0];
+    } else {
+        $thumbnail = false;
+      }
+    }
+  return $thumbnail;
+}
+
+function ngsb_get_permalink($post_id){
+  if($options['use_ng_url'] and get_post_meta($post_id, 'ngcp_synced')){
+    $url = get_post_meta($post_id, 'ngcp_display_url');
+    if($url == ''){
+      $url = get_permalink($post_id);
+    }
+  }else{
+    $url = get_permalink($post_id);
+  }
+  return $url;
+}
+
+function ngsb_opengraph_tags() {
+  global $post;
+  $options = ngsb_get_options();
   // only single article
   if(is_feed() || is_trackback() || !is_singular()) {
     return;
+  }
+
+  $thumbnail = ngsb_get_article_thumbnail();
+
+  echo "\n" . '<!-- Facebook Like Thumbnail -->' . "\n";
+  if($thumbnail) {
+    echo sprintf('<link href="%s" rel="image_src" />%s', esc_url($thumbnail), "\n");
   }
 
   /**
@@ -110,7 +155,13 @@ function ngsb_opengraph_tags() {
   echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '"/>' . "\n";
   echo '<meta property="og:type" content="article"/>' . "\n";
   echo '<meta property="og:title" content="' . strip_tags(get_the_title()) . '"/>' . "\n";
-  echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '"/>' . "\n";
+
+  $url = ngsb_get_permalink($post->ID);
+  echo '<meta property="og:url" content="' . esc_url($url) . '"/>' . "\n";
+  if($thumbnail) {
+    echo '<meta property="og:image" content="' . esc_url($thumbnail) . '"/>' . "\n";
+  }
+    
 }
 
 add_action('init', 'ngsb_sharebuttons_init');

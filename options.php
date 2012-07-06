@@ -2,7 +2,8 @@
 
   $defaults = array(
     'enabled' => '1',
-    'position' => 'before'
+    'position' => 'before',
+    'use_ng_url' => '1'
   );
 
   add_action('admin_menu', 'plugin_admin_add_page');
@@ -12,7 +13,7 @@
     register_setting( 'ngsb_options', 'ngsb_options', 'ngsb_options_validate' );
     add_settings_section('plugin_main', 'Main Settings', 'ngsb_section_text', 'ngsb_plugin');
     add_settings_field('ngsb_enabled', 'Enable Mouseover Sharebuttons', 'ngsb_enabled', 'ngsb_plugin', 'plugin_main');
-    add_settings_field('ngsb_position', 'Position', 'ngsb_position', 'ngsb_plugin', 'plugin_main');
+    add_settings_field('ngsb_use_ng_url', 'Use Newsgrape URL', 'ngsb_use_ng_url', 'ngsb_plugin', 'plugin_main');
   }
 
   function plugin_admin_add_page() {
@@ -33,8 +34,15 @@
   function ngsb_options_validate($input) {
     $newinput['enabled'] = trim($input['enabled']);
     $newinput['position'] = trim($input['position']);
+    $newinput['use_ng_url'] = trim($input['use_ng_url']);
     return $newinput;
   }
+
+  function ngsb_use_ng_url() {
+    $options = ngsb_get_options();
+    echo '<input name="ngsb_options[use_ng_url]" id="ngsb_use_ng_url" type="checkbox" value="1" class="code" ' . checked( 1, $options['use_ng_url'], false ) . ' />';
+  }
+
 
   function ngsb_get_options(){
     global $defaults;
