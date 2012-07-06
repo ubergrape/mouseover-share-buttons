@@ -123,8 +123,9 @@ function ngsb_get_article_thumbnail(){
 }
 
 function ngsb_get_permalink($post_id){
-  if($options['use_ng_url'] and get_post_meta($post_id, 'ngcp_synced')){
-    $url = get_post_meta($post_id, 'ngcp_display_url');
+  $options = ngsb_get_options();
+  if($options['use_ng_url'] and get_post_meta($post_id, 'ngcp_sync', true)){
+    $url = get_post_meta($post_id, 'ngcp_display_url', true);
     if($url == ''){
       $url = get_permalink($post_id);
     }
