@@ -73,7 +73,7 @@ function ngsb_share_buttons_before($title){
 
   if($options['enabled'] && $options['position'] == 'before'){
     $button = ngsb_generate_html($post);
-    return $title . '<br />' . $button . '<br />';
+    return $title . '<br />' . $button;
   }else{
     return $title;
   }
