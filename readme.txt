@@ -1,5 +1,5 @@
 === Mouseover Share-Buttons by Newsgrape ===
-Contributors: Newsgrape.com
+Contributors: newsgrape
 Tags: social, share-buttons, sharebuttons, newsgrape, newsgrape.com
 Requires at least: 3.2
 Tested up to: 3.4
@@ -12,6 +12,7 @@ archive pages.
 == Description ==
 
 Mouseover Share-Buttons give you three main benefits:
+
 * Faster loading frontpage
 * Less infos sent to Facebook, etc. (if you care for your users privacy)
 * Looks beautiful
