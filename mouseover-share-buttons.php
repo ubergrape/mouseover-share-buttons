@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Mouseover Share-Buttons by Newsgrape
- * Plugin URI: 
+ * Plugin URI: https://wordpress.org/extend/plugins/mouseover-share-buttons-by-newsgrape/
  * Description: Mouseover Share-Buttons integration for Wordpress
- * Version: 0.1
+ * Version: 1.0
  * Author: Newsgrape
  * Author URI: https://www.newsgrape.com
  */
