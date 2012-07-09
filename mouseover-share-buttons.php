@@ -3,7 +3,7 @@
  * Plugin Name: Mouseover Share-Buttons by Newsgrape
  * Plugin URI: https://wordpress.org/extend/plugins/mouseover-share-buttons-by-newsgrape/
  * Description: Mouseover Share-Buttons integration for Wordpress
- * Version: 1.0
+ * Version: 1.1
  * Author: Newsgrape
  * Author URI: https://www.newsgrape.com
  */
@@ -52,9 +52,9 @@ function ngsb_generate_html($post){
   $html = '
     <div class="lazy-share-widget" id="sharing-'.$post_id.'">
       <div class="platform facebook" id="fb-newshare-'.$post_id.'"></div>
-      <div class="platform twitter" id="tweet-newshare-'.$post_id.'"></div>
-      <div class="platform gplus"><span id="gplus-newshare-'.$post_id.'"></span></div>
-      <div class="platform linkedin" id="pinterest-newshare-'.$post_id.'"></div>
+      <div class="platform twitter" style="margin-top: 6px;" id="tweet-newshare-'.$post_id.'"></div>
+      <div class="platform gplus" style="margin-top: 3px;"><span id="gplus-newshare-'.$post_id.'"></span></div>
+      <div class="platform pinterest" style="margin-top: 3px;"id="pinterest-newshare-'.$post_id.'"></div>
       <div class="ngsb-post-title" style="display:none;">'.$post->post_title.'</div>
       <div class="ngsb-post-url" style="display:none;">'.$url.'</div>
     </div>    
